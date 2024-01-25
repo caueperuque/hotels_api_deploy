@@ -11,16 +11,47 @@ namespace TrybeHotel.Repository
             _context = context;
         }
 
-        //  5. Refatore o endpoint GET /hotel
         public IEnumerable<HotelDto> GetHotels()
         {
-            throw new NotImplementedException();
+            IEnumerable<HotelDto> hotels = from hotel in _context.Hotels
+                                           select
+                                               new HotelDto()
+                                               {
+                                                   address = hotel.Address,
+                                                   name = hotel.Name,
+                                                   hotelId = hotel.HotelId,
+                                                   cityId = hotel.CityId,
+                                                   cityName = hotel.City.Name,
+                                                   state = hotel.City.State
+                                               };
+            return hotels.ToList();
         }
 
-        // 6. Refatore o endpoint POST /hotel
         public HotelDto AddHotel(Hotel hotel)
         {
-           throw new NotImplementedException();
+            try
+            {
+                _context.Hotels.Add(hotel);
+                _context.SaveChanges();
+
+                var query = from reqHotel in _context.Hotels
+                            where reqHotel.HotelId == hotel.HotelId
+                            select new HotelDto()
+                            {
+                                hotelId = reqHotel.HotelId,
+                                name = reqHotel.Name,
+                                address = reqHotel.Address,
+                                cityId = reqHotel.CityId,
+                                cityName = reqHotel.City.Name,
+                                state = reqHotel.City.State
+                            };
+
+                return query.First();
+            } catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new HotelDto();
+            }
         }
     }
 }
