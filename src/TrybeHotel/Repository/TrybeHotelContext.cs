@@ -15,7 +15,7 @@ public class TrybeHotelContext : DbContext, ITrybeHotelContext
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
     {
-        optionsBuilder.UseSqlServer(@"Server=qao3ibsa7hhgecbv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;Database=u58myi75xtv2xmfs;User=clsj27dhxudvupsd;Password=vrvrbqfz6smd92e2;TrustServerCertificate=True");
+        optionsBuilder.UseSqlServer(@"Servermysql://clsj27dhxudvupsd:vrvrbqfz6smd92e2@qao3ibsa7hhgecbv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/u58myi75xtv2xmfs;Database=u58myi75xtv2xmfs;User=clsj27dhxudvupsd;Password=vrvrbqfz6smd92e2;TrustServerCertificate=True");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
