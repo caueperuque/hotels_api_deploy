@@ -25,7 +25,6 @@ namespace TrybeHotel.Services
             return result;
         }
 
-        // 12. Desenvolva o endpoint GET /geo/address
         public async Task<GeoDtoResponse> GetGeoLocation(GeoDto geoDto)
         {
             var address = $"https://nominatim.openstreetmap.org/search?street={geoDto.Address}&city={geoDto.City}&country=Brazil&state={geoDto.State}&format=json&limit=1";
@@ -41,7 +40,6 @@ namespace TrybeHotel.Services
             };
         }
 
-        // 12. Desenvolva o endpoint GET /geo/address
         public async Task<List<GeoDtoHotelResponse>> GetHotelsByGeo(GeoDto geoDto, IHotelRepository repository)
         {
             var userCoordinates = await GetGeoLocation(geoDto);
@@ -73,8 +71,6 @@ namespace TrybeHotel.Services
 
             return hotelsDistance.OrderBy(hotel => hotel.Distance).ToList();
         }
-
-
 
         public int CalculateDistance(string latitudeOrigin, string longitudeOrigin, string latitudeDestiny, string longitudeDestiny)
         {
