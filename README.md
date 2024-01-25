@@ -84,10 +84,10 @@ Para utilizar esta aplicação, siga estes passos:
 - Cadastra uma nova reserva.
 
 #### GET /booking
-- Visualiza as reservas.
+- Lista as reservas.
 
 #### GET /user
-- Visualiza os usuários existentes.
+- Lista os usuários existentes.
 
 #### GET /geo/status
 - Possível ver o status da API de geolocalização.
